@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e
+./gradlew build
+mkdir tmp
+(cd tmp; jar -xf ../build/libs/Flame-1.0.jar)
+(cd tmp; jar -xf ../libs/jackson-annotations-2.4.0.jar)
+(cd tmp; jar -xf ../libs/jackson-core-2.4.4.jar)
+(cd tmp; jar -xf ../libs/jackson-databind-2.4.4.jar)
+rm -rf Flame.jar
+jar -cvf Flame.jar -C tmp .
+rm -rf tmp

@@ -1,0 +1,16 @@
+[
+{
+  "modid": "flame",
+  "name": "Flame",
+  "description": "The Minecraft plugin for the ScorchForge.com project.",
+  "version": "{version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["AlecThilenius"],
+  "credits": "Alec Thilenius",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
