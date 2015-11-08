@@ -1,7 +1,9 @@
-package com.thilenius.flame.tpad;
+package com.thilenius.flame.item;
 
 import com.thilenius.flame.Flame;
 import com.thilenius.flame.GlobalData;
+import com.thilenius.flame.lib.Names;
+import com.thilenius.flame.tpad.TileEntityTeleportPad;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
@@ -15,19 +17,11 @@ import net.minecraftforge.common.util.ForgeDirection;
 /**
  * Created by Alec on 10/17/15.
  */
-public class ItemTeleportPad extends Item {
+public class ItemTeleportPad extends ItemFL {
 
     public ItemTeleportPad() {
         maxStackSize = 1;
-        setCreativeTab(CreativeTabs.tabMisc);
-        setUnlocalizedName("teleportPad");
-        GameRegistry.addRecipe(new ItemStack(this), new Object[]{
-                "A  ",
-                "AB ",
-                "AC ",
-                'A', Blocks.planks, 'B', GlobalData.WoodenSparkItem, 'C', GlobalData.SingularityCoreItem
-        });
-        this.setTextureName("flame:TeleportPad");
+        this.setUnlocalizedName(Names.Items.PAD);
     }
 
     @Override
