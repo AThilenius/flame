@@ -1,6 +1,8 @@
-package com.thilenius.flame.spark;
+package com.thilenius.flame.block;
 
 import com.thilenius.flame.Flame;
+import com.thilenius.flame.lib.Names;
+import com.thilenius.flame.spark.TileEntityWoodenSpark;
 import com.thilenius.flame.tpad.TileEntityTeleportPad;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -14,15 +16,12 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BlockWoodenSpark extends BlockContainer {
+public class BlockWoodenSpark extends BlockFL {
 
     public BlockWoodenSpark() {
-        super(Material.rock);
-        setBlockName("blockWoodenSpark");
-        setHardness(20.0f);
-        setResistance(10000000000.0f);
-        setHarvestLevel("pickaxe", 0);
-        setBlockTextureName("flame:WoodenSpark");
+        super();
+        this.setBlockName(Names.Blocks.WOOD_SPARK);
+        this.setBlockTextureName(Names.Blocks.WOOD_SPARK);
     }
 
     @Override

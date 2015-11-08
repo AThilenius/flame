@@ -1,8 +1,10 @@
-package com.thilenius.flame.tpad;
+package com.thilenius.flame.block;
 
 import com.thilenius.flame.Flame;
 import com.thilenius.flame.GlobalData;
+import com.thilenius.flame.lib.Names;
 import com.thilenius.flame.spark.TileEntityWoodenSpark;
+import com.thilenius.flame.tpad.TileEntityTeleportPad;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -17,15 +19,12 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BlockTeleportPad extends BlockContainer {
+public class BlockTeleportPad extends BlockFL {
 
     public BlockTeleportPad() {
-        super(Material.rock);
-        setBlockName("blockTeleportPad");
-        setHardness(20.0f);
-        setResistance(10000000000.0f);
-        setHarvestLevel("pickaxe", 0);
-        setBlockTextureName("flame:TeleportPad");
+        super();
+        this.setBlockName(Names.Blocks.PAD);
+        this.setBlockTextureName(Names.Blocks.PAD);
     }
 
     @Override

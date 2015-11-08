@@ -2,17 +2,11 @@ package com.thilenius.flame;
 
 import com.thilenius.flame.commands.BlazeCommandHandler;
 import com.thilenius.flame.commands.HomeCommandHandler;
+import com.thilenius.flame.init.ModBlocks;
 import com.thilenius.flame.init.ModItems;
 import com.thilenius.flame.init.Recipes;
 import com.thilenius.flame.lib.Reference;
 import com.thilenius.flame.rest.RestServer;
-import com.thilenius.flame.spark.BlockWoodenSpark;
-import com.thilenius.flame.item.ItemWoodenSpark;
-import com.thilenius.flame.spark.TileEntityWoodenSpark;
-import com.thilenius.flame.tpad.BlockTeleportPad;
-import com.thilenius.flame.item.ItemTeleportPad;
-import com.thilenius.flame.item.ItemSingularityCore;
-import com.thilenius.flame.tpad.TileEntityTeleportPad;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -25,14 +19,12 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.ServerTickEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.MinecraftForge;
@@ -75,6 +67,7 @@ public class Flame {
 		proxy.registerRenderers();
 
         ModItems.init();
+        ModBlocks.init();
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 	}
