@@ -2,13 +2,16 @@ package com.thilenius.flame;
 
 import com.thilenius.flame.commands.BlazeCommandHandler;
 import com.thilenius.flame.commands.HomeCommandHandler;
+import com.thilenius.flame.init.ModItems;
+import com.thilenius.flame.init.Recipes;
+import com.thilenius.flame.lib.Reference;
 import com.thilenius.flame.rest.RestServer;
 import com.thilenius.flame.spark.BlockWoodenSpark;
-import com.thilenius.flame.spark.ItemWoodenSpark;
+import com.thilenius.flame.item.ItemWoodenSpark;
 import com.thilenius.flame.spark.TileEntityWoodenSpark;
 import com.thilenius.flame.tpad.BlockTeleportPad;
-import com.thilenius.flame.tpad.ItemTeleportPad;
-import com.thilenius.flame.tpad.SingularityCoreItem;
+import com.thilenius.flame.item.ItemTeleportPad;
+import com.thilenius.flame.item.ItemSingularityCore;
 import com.thilenius.flame.tpad.TileEntityTeleportPad;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -45,7 +48,7 @@ import java.util.HashSet;
 
 // Note: Program Arguments: -username=athilenius
 
-@Mod(modid = "flame", name = "Flame", version = "15.4.12")
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
 public class Flame {
 
 	@Instance(value = "flame")
@@ -71,23 +74,7 @@ public class Flame {
 		// Register Rendered
 		proxy.registerRenderers();
 
-        // DEBUG
-        GlobalData.SingularityCoreItem = new SingularityCoreItem();
-        GameRegistry.registerItem(GlobalData.SingularityCoreItem, "singularityCore");
-
-        GlobalData.WoodenSparkItem = new ItemWoodenSpark();
-        GameRegistry.registerItem(GlobalData.WoodenSparkItem, "woodenSpark");
-
-        GlobalData.TeleportPadItem = new ItemTeleportPad();
-        GameRegistry.registerItem(GlobalData.TeleportPadItem, "teleportPad");
-
-        GlobalData.TeleportPadBlock = new BlockTeleportPad();
-        GameRegistry.registerBlock(GlobalData.TeleportPadBlock, "teleportPadBlock");
-        GameRegistry.registerTileEntity(TileEntityTeleportPad.class, "teleportPadTileEntity");
-
-        GlobalData.WoodenSparkBlock = new BlockWoodenSpark();
-        GameRegistry.registerBlock(GlobalData.WoodenSparkBlock, ItemBlock.class, "woodenSparkBlock");
-        GameRegistry.registerTileEntity(TileEntityWoodenSpark.class, "woodenSparkTileEntity");
+        ModItems.init();
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 	}
@@ -95,7 +82,8 @@ public class Flame {
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
 		proxy.registerRenderers();
-	}
+        Recipes.init();
+    }
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
