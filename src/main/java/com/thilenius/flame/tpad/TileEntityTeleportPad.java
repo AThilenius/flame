@@ -182,40 +182,40 @@ public class TileEntityTeleportPad extends FlameTileEntity implements IEnergyRec
         if (blockToMine == Blocks.bedrock) {
             return FlameActionTargetResponse.fromJson("{\"did_pass\":false,\"did_break\":false,\"did_gather\":false}");
         }
-//        boolean did_gather = true;
-//        ArrayList<ItemStack> items = blockToMine.getDrops(world, mineLocation.X, mineLocation.Y, mineLocation.Z,
-//                world.getBlockMetadata(mineLocation.X, mineLocation.Y, mineLocation.Z), 0);
-//        for (ItemStack itemStack : items) {
-//            // Try to add it to a slot
-//            for (int i = 0; i < m_inventory.length && itemStack.stackSize > 0; i++) {
-//                if (m_inventory[i] == null) {
-//                    m_inventory[i] = itemStack.copy();
-//                    itemStack.stackSize = 0;
-//                } else if (itemStack != null && m_inventory[i].getItem() == itemStack.getItem() &&
-//                        (!itemStack.getHasSubtypes() || m_inventory[i].getItemDamage() == itemStack.getItemDamage()) &&
-//                        ItemStack.areItemStackTagsEqual(itemStack, m_inventory[i])) {
-//                    // Stackable items, merge them
-//                    int finalCount = m_inventory[i].stackSize + itemStack.stackSize;
-//                    if (finalCount <= itemStack.getMaxStackSize()) {
-//                        // Put them all in
-//                        m_inventory[i].stackSize = finalCount;
-//                        itemStack.stackSize = 0;
-//                    } else {
-//                        // Put as many as we can
-//                        int overflow = finalCount - itemStack.getMaxStackSize();
-//                        itemStack.stackSize = overflow;
-//                        m_inventory[i].stackSize = itemStack.getMaxStackSize();
-//                    }
-//                }
-//            }
-//            // Drop the rest, if any
-//            if (itemStack.stackSize > 0) {
-//                world.spawnEntityInWorld(new EntityItem(world, getSparkLocation().X, getSparkLocation().Y,
-//                        getSparkLocation().Z, itemStack));
-//                did_gather = false;
-//            }
-//        }
-        //world.setBlockToAir(mineLocation.X, mineLocation.Y, mineLocation.Z);
+        boolean did_gather = true;
+        ArrayList<ItemStack> items = blockToMine.getDrops(world, mineLocation.X, mineLocation.Y, mineLocation.Z,
+                world.getBlockMetadata(mineLocation.X, mineLocation.Y, mineLocation.Z), 0);
+        for (ItemStack itemStack : items) {
+            // Try to add it to a slot
+            for (int i = 0; i < m_inventory.length && itemStack.stackSize > 0; i++) {
+                if (m_inventory[i] == null) {
+                    m_inventory[i] = itemStack.copy();
+                    itemStack.stackSize = 0;
+                } else if (itemStack != null && m_inventory[i].getItem() == itemStack.getItem() &&
+                        (!itemStack.getHasSubtypes() || m_inventory[i].getItemDamage() == itemStack.getItemDamage()) &&
+                        ItemStack.areItemStackTagsEqual(itemStack, m_inventory[i])) {
+                    // Stackable items, merge them
+                    int finalCount = m_inventory[i].stackSize + itemStack.stackSize;
+                    if (finalCount <= itemStack.getMaxStackSize()) {
+                        // Put them all in
+                        m_inventory[i].stackSize = finalCount;
+                        itemStack.stackSize = 0;
+                    } else {
+                        // Put as many as we can
+                        int overflow = finalCount - itemStack.getMaxStackSize();
+                        itemStack.stackSize = overflow;
+                        m_inventory[i].stackSize = itemStack.getMaxStackSize();
+                    }
+                }
+            }
+            // Drop the rest, if any
+            if (itemStack.stackSize > 0) {
+                world.spawnEntityInWorld(new EntityItem(world, getSparkLocation().X, getSparkLocation().Y,
+                        getSparkLocation().Z, itemStack));
+                did_gather = false;
+            }
+        }
+        world.setBlockToAir(mineLocation.X, mineLocation.Y, mineLocation.Z);
         m_sparkAnimation = AnimationHelpers.AnimationTypes.Idle;
         m_animationTimer = new CountdownTimer(ANIMATION_TIME_NOMINATOR/m_powerSmoothed);
         float hardness = blockToMine.getBlockHardness(world, mineLocation.X, mineLocation.Y, mineLocation.Z);
