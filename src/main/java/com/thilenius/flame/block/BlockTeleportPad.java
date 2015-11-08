@@ -5,21 +5,16 @@ import com.thilenius.flame.GlobalData;
 import com.thilenius.flame.lib.Names;
 import com.thilenius.flame.spark.TileEntityWoodenSpark;
 import com.thilenius.flame.tpad.TileEntityTeleportPad;
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BlockTeleportPad extends BlockFL {
+public class BlockTeleportPad extends BlockTileEntityFL {
 
     public BlockTeleportPad() {
         super();

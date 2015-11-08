@@ -1,12 +1,9 @@
 package com.thilenius.flame.block;
 
-import com.sun.xml.internal.bind.annotation.OverrideAnnotationOf;
 import com.thilenius.flame.creativetab.CreativeTabFL;
 import com.thilenius.flame.lib.Reference;
-import com.thilenius.flame.spark.TileEntityWoodenSpark;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -16,15 +13,15 @@ import net.minecraft.world.World;
 /**
  * Created by skyco on 11/8/2015.
  */
-public class BlockFL extends BlockContainer
+public abstract class BlockTileEntityFL extends BlockContainer
 {
-    public BlockFL(Material material)
+    public BlockTileEntityFL(Material material)
     {
         super(material);
         this.setCreativeTab(CreativeTabFL.FL_TAB);
     }
 
-    public BlockFL()
+    public BlockTileEntityFL()
     {
         this(Material.iron);
     }
@@ -46,7 +43,4 @@ public class BlockFL extends BlockContainer
     {
         return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
     }
-
-    @Override
-    public TileEntity createNewTileEntity(World world, int p_149915_2_) { return null; }
 }

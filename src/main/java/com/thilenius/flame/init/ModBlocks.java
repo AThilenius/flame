@@ -1,6 +1,6 @@
 package com.thilenius.flame.init;
 
-import com.thilenius.flame.block.BlockFL;
+import com.thilenius.flame.block.BlockTileEntityFL;
 import com.thilenius.flame.block.BlockTeleportPad;
 import com.thilenius.flame.block.BlockWoodenSpark;
 import com.thilenius.flame.lib.Names;
@@ -13,8 +13,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 @GameRegistry.ObjectHolder(Reference.MOD_ID)
 public class ModBlocks
 {
-    public static final BlockFL woodSpark = new BlockWoodenSpark();
-    public static final BlockFL tpPad = new BlockTeleportPad();
+    public static final BlockTileEntityFL woodSpark = new BlockWoodenSpark();
+    public static final BlockTileEntityFL tpPad = new BlockTeleportPad();
 
     public static void init()
     {

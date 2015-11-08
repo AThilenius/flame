@@ -5,8 +5,6 @@ import com.thilenius.flame.lib.Names;
 import com.thilenius.flame.spark.TileEntityWoodenSpark;
 import com.thilenius.flame.tpad.TileEntityTeleportPad;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -16,7 +14,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BlockWoodenSpark extends BlockFL {
+public class BlockWoodenSpark extends BlockTileEntityFL {
 
     public BlockWoodenSpark() {
         super();
