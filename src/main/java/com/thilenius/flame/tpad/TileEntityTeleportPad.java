@@ -121,7 +121,7 @@ public class TileEntityTeleportPad extends FlameTileEntity implements IEnergyRec
                 animationType);
         if (!newLocation.equals(getSparkLocation())) {
             // Move action, Check if we can move to the new spot
-            if (world.isAirBlock(newLocation.X, newLocation.Y, newLocation.Z)) {
+            if (world.getBlock(newLocation.X, newLocation.Y, newLocation.Z).isReplaceable(world, newLocation.X, newLocation.Y, newLocation.Z)) {
                 world.setBlock(newLocation.X, newLocation.Y, newLocation.Z, GlobalData.WoodenSparkBlock);
                 TileEntityWoodenSpark sparkTileEntity = (TileEntityWoodenSpark) world.getTileEntity(
                         newLocation.X, newLocation.Y, newLocation.Z);
