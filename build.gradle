@@ -18,6 +18,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'forge'
 apply plugin: 'maven'
+apply plugin: 'curseforge'
 
 ext.configFile = file "build.properties"
 
@@ -73,4 +74,13 @@ dependencies {
 }
 jar{
     from ( configurations.customCompile.collect { it.isDirectory() ? it : zipTree(it)}) { exclude 'META-INF/**' }
+}
+
+curse {
+    dependsOn 'reobf'
+    onlyIf { return project.hasProperty('curseForgeApiKey') }
+
+    projectId = config.curse_forge_id
+    apiKey = project.hasProperty('curseForgeApiKey') ? project.curseForgeApiKey : ''
+    releaseType = config.release_type
 }
