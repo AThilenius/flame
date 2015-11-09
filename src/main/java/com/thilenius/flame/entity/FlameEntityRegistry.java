@@ -1,24 +1,17 @@
 package com.thilenius.flame.entity;
 
-import com.thilenius.flame.Flame;
-import com.thilenius.flame.GlobalData;
-import com.thilenius.flame.entity.FlameActionTarget;
-import com.thilenius.flame.utilities.StringUtils;
-import com.thilenius.flame.utilities.types.Location3D;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.World;
+import com.thilenius.flame.tileentity.TileEntityFL;
 import net.minecraft.world.WorldServer;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 // Hacked to register entities 1:1 to usernames for now
 public class FlameEntityRegistry {
 
     // In the format USERNAME-DIMENSION_ID
-    private HashMap<String, FlameTileEntity> m_entitiesByUsername = new HashMap<String, FlameTileEntity>();
+    private HashMap<String, TileEntityFL> m_entitiesByUsername = new HashMap<String, TileEntityFL>();
 
-    public void register (FlameTileEntity entity) {
+    public void register (TileEntityFL entity) {
         if (entity.getWorldObj() instanceof WorldServer) {
             String key = entity.getPlayerUsername() + "-" + entity.getWorldObj().provider.dimensionId;
             if (!m_entitiesByUsername.containsKey(key)) {
@@ -31,7 +24,7 @@ public class FlameEntityRegistry {
         }
     }
 
-    public void unregister (FlameTileEntity entity) {
+    public void unregister (TileEntityFL entity) {
         if (entity.getWorldObj() instanceof WorldServer) {
             String key = entity.getPlayerUsername() + "-" + entity.getWorldObj().provider.dimensionId;
             if (m_entitiesByUsername.containsKey(key)) {
@@ -50,7 +43,7 @@ public class FlameEntityRegistry {
 
     public FlameActionTarget getTargetByUsernameAndDimension(String username, int dimension, String actionName) {
         String key = username + "-" + dimension;
-        FlameTileEntity tileEntity = m_entitiesByUsername.get(key);
+        TileEntityFL tileEntity = m_entitiesByUsername.get(key);
         if (tileEntity == null) {
             return null;
         }

@@ -1,8 +1,5 @@
 package com.thilenius.flame.utilities.types;
 
-/**
- * Created by Alec on 10/21/15.
- */
 public class AnimationCycle {
 
     public float AnimationSpeed = 1.0f;

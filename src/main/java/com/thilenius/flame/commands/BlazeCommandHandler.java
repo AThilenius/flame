@@ -9,9 +9,6 @@ import net.minecraft.util.ChatStyle;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
-/**
- * Created by Alec on 1/27/15.
- */
 public class BlazeCommandHandler extends CommandBase {
 
     @Override

@@ -1,8 +1,5 @@
 package com.thilenius.flame.utilities.types;
 
-/**
- * Created by Alec on 11/17/14.
- */
 public class LocationF3D {
     public float X;
     public float Y;

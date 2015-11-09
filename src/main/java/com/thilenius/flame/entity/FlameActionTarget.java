@@ -1,20 +1,18 @@
 package com.thilenius.flame.entity;
 
-import com.thilenius.flame.entity.FlameActionPath;
-import com.thilenius.flame.entity.FlameTileEntity;
-import com.thilenius.flame.utilities.types.Location3D;
+import com.thilenius.flame.tileentity.TileEntityFL;
 
 import java.lang.reflect.Method;
 
 public class FlameActionTarget {
 
-    public FlameTileEntity TileEntity;
+    public TileEntityFL TileEntity;
     public FlameActionPath ActionPath;
     public Method TargetMethod;
     public String EntityUUID;
     public String Username;
 
-    public FlameActionTarget(FlameTileEntity tileEntity, FlameActionPath actionPath, Method targetMethod,
+    public FlameActionTarget(TileEntityFL tileEntity, FlameActionPath actionPath, Method targetMethod,
                              String entityUUID, String username) {
         TileEntity = tileEntity;
         ActionPath = actionPath;
