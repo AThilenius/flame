@@ -19,20 +19,6 @@ apply plugin: 'java'
 apply plugin: 'forge'
 apply plugin: 'maven'
 
-//repositories {
-//    maven { // the repo from which to get NEI and stuff
-//        name 'CB Repo'
-//        url "http://chickenbones.net/maven/"
-//    }
-//}
-dependencies {
-    compile files (
-            'libs/jackson-annotations-2.4.0.jar',
-            'libs/jackson-core-2.4.4.jar',
-            'libs/jackson-databind-2.4.4.jar'
-    )
-}
-
 ext.configFile = file "build.properties"
 
 configFile.withReader {
@@ -71,4 +57,20 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude '**/*.info'
     }
+}
+
+
+configurations {
+    customCompile
+}
+dependencies {
+    customCompile files (
+            './libs/jackson-annotations-2.4.0.jar',
+            './libs/jackson-core-2.4.4.jar',
+            './libs/jackson-databind-2.4.4.jar'
+    )
+    compile configurations.customCompile
+}
+jar{
+    from ( configurations.customCompile.collect { it.isDirectory() ? it : zipTree(it)}) { exclude 'META-INF/**' }
 }
