@@ -2,6 +2,6 @@
 itemGroup.flame=Flame
 
 # Items
-item.flame:woodenSpark.name=Wooden Spark
-item.flame:singularityCore.name=Singularity Core
-item.flame:teleportPad.name=Teleport Pad
+item.flame:woodenSparkItem.name=Wooden Spark
+item.flame:singularityCoreItem.name=Singularity Core
+item.flame:teleportPadItem.name=Teleport Pad

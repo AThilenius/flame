@@ -27,7 +27,7 @@ public class RendererFL extends TileEntitySpecialRenderer
             = AdvancedModelLoader.loadModel(Models.SPARK_ROTOR);
     private ResourceLocation m_magicaColorsTexture
             = ResourceLocationHelper.getResourceLocation("textures/blocks/MagicaVoxelColors.png");
-    private AnimationCycle m_sparkAnimationCycle = new AnimationCycle(8.0f, 0.15f);
+    private AnimationCycle m_sparkAnimationCycle = new AnimationCycle(2.0f, 0.15f);
     private AnimationCycle m_rotorAnimationCycle = new AnimationCycle(15.0f, 360.0f);
 
     // Can render both a TeleportPadTileEntity and a WoodenSparkTileEntity

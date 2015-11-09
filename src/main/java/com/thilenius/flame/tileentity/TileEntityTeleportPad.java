@@ -1,5 +1,6 @@
 package com.thilenius.flame.tileentity;
 
+import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyReceiver;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.thilenius.flame.GlobalData;
@@ -35,16 +36,17 @@ public class TileEntityTeleportPad extends TileEntityFL implements IEnergyReceiv
     // Used for animation offset
     public final float TIME_OFFSET_CONST = new Random().nextFloat();
 
-    protected float ANIMATION_TIME_NOMINATOR = 20.0f;
-    protected float POWER_THRESHOLD = 4.0f;
+    protected float ANIMATION_TIME_NOMINATOR = 1.0f/3.0f; // TODO: change this if animations are wrong speed
+    protected int ACTION_MOVE_COST = 20;
+    protected int ACTION_MINE_COST = 320;
+    protected int ACTION_RECALL_COST = 20000;
 
     private AnimationHelpers.FaceDirections m_sparkFaceDir = AnimationHelpers.FaceDirections.North;
     private AnimationHelpers.AnimationTypes m_sparkAnimation = AnimationHelpers.AnimationTypes.Idle;
     private CountdownTimer m_animationTimer;
     private Location3D m_sparkLocation = null;
     private ItemStack[] m_inventory = new ItemStack[9];
-    private float m_powerSmoothed = 0.0f;
-    private float m_powerAccumulator = 0.0f;
+    private EnergyStorage energy = new EnergyStorage(20000, 1000);
 
     // ======   Network / Disk IO Handling / TileEntity Overrides   ====================================================
     @Override
@@ -107,9 +109,10 @@ public class TileEntityTeleportPad extends TileEntityFL implements IEnergyReceiv
     // ======   Action Path Handlers   =================================================================================
     @FlameActionPath("move")
     public FlameActionTargetResponse moveAction(World world, JsonNode message) {
-        if (m_powerSmoothed < POWER_THRESHOLD || m_animationTimer != null && !m_animationTimer.hasElapsed()) {
+        if (energy.getEnergyStored() < ACTION_MOVE_COST || m_animationTimer != null && !m_animationTimer.hasElapsed()) {
             return FlameActionTargetResponse.fromOnCoolDown();
         }
+        energy.setEnergyStored(energy.getEnergyStored() - ACTION_MOVE_COST);
         AnimationHelpers.AnimationTypes animationType
                 = AnimationHelpers.AnimationTypes.valueOf(message.get("direction").asText());
         if (animationType == null || animationType == AnimationHelpers.AnimationTypes.Idle) {
@@ -134,7 +137,7 @@ public class TileEntityTeleportPad extends TileEntityFL implements IEnergyReceiv
                 m_sparkLocation = newLocation;
                 m_sparkAnimation = animationType;
                 m_sparkFaceDir = AnimationHelpers.getNewFaceDirByAnimation(m_sparkFaceDir, animationType);
-                m_animationTimer = new CountdownTimer(ANIMATION_TIME_NOMINATOR/m_powerSmoothed);
+                m_animationTimer = new CountdownTimer(ANIMATION_TIME_NOMINATOR);
                 world.markBlockForUpdate(xCoord, yCoord, zCoord);
                 world.markBlockForUpdate(getSparkLocation().X, getSparkLocation().Y, getSparkLocation().Z);
                 super.markDirty();
@@ -146,7 +149,7 @@ public class TileEntityTeleportPad extends TileEntityFL implements IEnergyReceiv
             // Rotate action
             m_sparkAnimation = animationType;
             m_sparkFaceDir = AnimationHelpers.getNewFaceDirByAnimation(m_sparkFaceDir, animationType);
-            m_animationTimer = new CountdownTimer(ANIMATION_TIME_NOMINATOR/m_powerSmoothed);
+            m_animationTimer = new CountdownTimer(ANIMATION_TIME_NOMINATOR);
             world.markBlockForUpdate(xCoord, yCoord, zCoord);
             world.markBlockForUpdate(getSparkLocation().X, getSparkLocation().Y, getSparkLocation().Z);
             super.markDirty();
@@ -156,9 +159,11 @@ public class TileEntityTeleportPad extends TileEntityFL implements IEnergyReceiv
 
     @FlameActionPath("mine")
     public FlameActionTargetResponse mineAction(World world, JsonNode message) {
-        if (m_powerSmoothed < POWER_THRESHOLD || m_animationTimer != null && !m_animationTimer.hasElapsed()) {
+        // TODO: Add fake player and multiply cost by block hardness
+        if (energy.getEnergyStored() < ACTION_MINE_COST || m_animationTimer != null && !m_animationTimer.hasElapsed()) {
             return FlameActionTargetResponse.fromOnCoolDown();
         }
+        energy.setEnergyStored(energy.getEnergyStored() - ACTION_MINE_COST);
         AnimationHelpers.AnimationTypes animationType
                 = AnimationHelpers.AnimationTypes.valueOf(message.get("direction").asText());
         if (animationType == null || (animationType != AnimationHelpers.AnimationTypes.Up &&
@@ -215,7 +220,7 @@ public class TileEntityTeleportPad extends TileEntityFL implements IEnergyReceiv
         }
         world.setBlockToAir(mineLocation.X, mineLocation.Y, mineLocation.Z);
         m_sparkAnimation = AnimationHelpers.AnimationTypes.Idle;
-        m_animationTimer = new CountdownTimer(ANIMATION_TIME_NOMINATOR/m_powerSmoothed);
+        m_animationTimer = new CountdownTimer(ANIMATION_TIME_NOMINATOR);
         float hardness = blockToMine.getBlockHardness(world, mineLocation.X, mineLocation.Y, mineLocation.Z);
         float damage = blockToMine.getDamageValue(world, mineLocation.X, mineLocation.Y, mineLocation.Z);
         System.out.println("Hardness: " + hardness + ", Damage at: " + damage);
@@ -261,9 +266,10 @@ public class TileEntityTeleportPad extends TileEntityFL implements IEnergyReceiv
         if (getPadLocation().equals(getSparkLocation())) {
             return FlameActionTargetResponse.fromJson("{\"did_pass\":true}");
         }
-        if (m_powerSmoothed < POWER_THRESHOLD || m_animationTimer != null && !m_animationTimer.hasElapsed()) {
+        if (energy.getEnergyStored() < ACTION_RECALL_COST || m_animationTimer != null && !m_animationTimer.hasElapsed()) {
             return FlameActionTargetResponse.fromOnCoolDown();
         }
+        energy.setEnergyStored(energy.getEnergyStored() - ACTION_RECALL_COST);
         TileEntityWoodenSpark tileEntityWoodenSpark = (TileEntityWoodenSpark) world.getTileEntity(
                 getSparkLocation().X, getSparkLocation().Y, getSparkLocation().Z);
         // Suppress the custom block breaking effect
@@ -273,7 +279,7 @@ public class TileEntityTeleportPad extends TileEntityFL implements IEnergyReceiv
         m_sparkFaceDir = AnimationHelpers.FaceDirections.North;
         m_sparkLocation = new Location3D(xCoord, yCoord, zCoord);
         m_sparkAnimation = AnimationHelpers.AnimationTypes.Idle;
-        m_animationTimer = new CountdownTimer(ANIMATION_TIME_NOMINATOR/m_powerSmoothed);
+        m_animationTimer = new CountdownTimer(ANIMATION_TIME_NOMINATOR);
         Random rand = new Random();
         //for(int countparticles = 0; countparticles <= 10; ++countparticles) {
             world.spawnParticle("splash", xCoord + 0.5D, yCoord + 0.1D, zCoord + 0.5D, 0.0D, 0.0D, 0.0D);
@@ -349,11 +355,7 @@ public class TileEntityTeleportPad extends TileEntityFL implements IEnergyReceiv
 
     @Override
     public ItemStack getStackInSlotOnClosing(int slot) {
-        ItemStack stack = getStackInSlot(slot);
-        if (stack != null) {
-            setInventorySlotContents(slot, null);
-        }
-        return stack;
+        return getStackInSlot(slot);
     }
 
     @Override
@@ -398,30 +400,20 @@ public class TileEntityTeleportPad extends TileEntityFL implements IEnergyReceiv
     // =================================================================================================================
     // ====  IEnergyReceiver Implementation  ===========================================================================
     // =================================================================================================================
-    @Override
-    public void updateEntity() {
-        super.updateEntity();
-        m_powerSmoothed += (m_powerAccumulator - m_powerSmoothed) / 20.0f;
-        if (m_powerSmoothed > 60.0f) {
-            m_powerSmoothed = 60.0f;
-        }
-        m_powerAccumulator = 0.0f;
-    }
 
     @Override
     public int receiveEnergy(ForgeDirection forgeDirection, int amount, boolean simulating) {
-      m_powerAccumulator = amount;
-      return amount;
+        return energy.receiveEnergy(amount, simulating);
     }
 
     @Override
     public int getEnergyStored(ForgeDirection forgeDirection) {
-        return 0;
+        return energy.getEnergyStored();
     }
 
     @Override
     public int getMaxEnergyStored(ForgeDirection forgeDirection) {
-        return 10000;
+        return energy.getMaxEnergyStored();
     }
 
     @Override

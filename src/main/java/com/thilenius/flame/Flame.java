@@ -45,37 +45,34 @@ public class Flame
 
     public static GlobalData Globals = new GlobalData();
 
-    private static HashSet<Entity> m_protectedEntities = new HashSet<Entity>();
     private static boolean m_hasStartTickBeenSent;
-
-    // HACK FOR TINY CONTAINER
-    public static Block blockTiny;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        // Register Events
-        MinecraftForge.EVENT_BUS.register(this);
-        FMLCommonHandler.instance().bus().register(this);
-
+        // Packet handler
         ModItems.init();
         ModBlocks.init();
+    }
+
+    @EventHandler
+    public void init(FMLInitializationEvent event)
+    {
+        Recipes.init();
+
+        ModTileEntity.init();
+
+        proxy.registerRenderers();
+        MinecraftForge.EVENT_BUS.register(this);
+        FMLCommonHandler.instance().bus().register(this);
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
     }
 
     @EventHandler
-    public void load(FMLInitializationEvent event)
-    {
-        // Register Rendered
-        ModTileEntity.init();
-        proxy.registerRenderers();
-        Recipes.init();
-    }
-
-    @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
+        // Mod interactions
     }
 
     @EventHandler

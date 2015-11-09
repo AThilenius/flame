@@ -13,7 +13,7 @@ public abstract class BlockTileEntityFL extends BlockContainer
     public BlockTileEntityFL(Material material)
     {
         super(material);
-        this.setCreativeTab(CreativeTabFL.FL_TAB);
+        //this.setCreativeTab(CreativeTabFL.FL_TAB);
     }
 
     public BlockTileEntityFL()
