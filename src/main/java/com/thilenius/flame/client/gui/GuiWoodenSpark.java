@@ -1,6 +1,7 @@
-package com.thilenius.flame.spark;
+package com.thilenius.flame.client.gui;
 
-import com.thilenius.flame.tpad.TileEntityTeleportPad;
+import com.thilenius.flame.inventory.ContainerWoodenSpark;
+import com.thilenius.flame.tileentity.TileEntityTeleportPad;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;

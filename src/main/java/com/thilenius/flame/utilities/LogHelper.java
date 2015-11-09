@@ -1,12 +1,9 @@
 package com.thilenius.flame.utilities;
 
-import com.thilenius.flame.lib.Reference;
+import com.thilenius.flame.reference.Reference;
 import cpw.mods.fml.common.FMLLog;
 import org.apache.logging.log4j.Level;
 
-/**
- * Created by skyco on 11/8/2015.
- */
 public class LogHelper
 {
     public static void log(Level logLevel, Object object)

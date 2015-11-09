@@ -1,16 +1,13 @@
 package com.thilenius.flame.item;
 
 import com.thilenius.flame.creativetab.CreativeTabFL;
-import com.thilenius.flame.lib.Reference;
+import com.thilenius.flame.reference.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-/**
- * Created by skyco on 11/8/2015.
- */
 public class ItemFL extends Item
 {
     public ItemFL()

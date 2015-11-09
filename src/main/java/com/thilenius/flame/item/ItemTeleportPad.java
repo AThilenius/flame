@@ -2,21 +2,14 @@ package com.thilenius.flame.item;
 
 import com.thilenius.flame.Flame;
 import com.thilenius.flame.GlobalData;
-import com.thilenius.flame.lib.Names;
-import com.thilenius.flame.tpad.TileEntityTeleportPad;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.creativetab.CreativeTabs;
+import com.thilenius.flame.init.ModBlocks;
+import com.thilenius.flame.reference.Names;
+import com.thilenius.flame.tileentity.TileEntityTeleportPad;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-/**
- * Created by Alec on 10/17/15.
- */
 public class ItemTeleportPad extends ItemFL {
 
     public ItemTeleportPad() {
@@ -41,7 +34,7 @@ public class ItemTeleportPad extends ItemFL {
             if (!entityPlayer.capabilities.isCreativeMode){
                 itemStack.stackSize--;
             }
-            world.setBlock(x, y, z, GlobalData.TeleportPadBlock);
+            world.setBlock(x, y, z, ModBlocks.tpPad);
             if (!world.isRemote) {
                 TileEntityTeleportPad tileEntityTeleportPad = (TileEntityTeleportPad) world.getTileEntity(x, y, z);
                 tileEntityTeleportPad.setPlayerName(entityPlayer.getGameProfile().getName());

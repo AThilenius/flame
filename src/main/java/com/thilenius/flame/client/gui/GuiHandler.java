@@ -1,9 +1,9 @@
-package com.thilenius.flame;
+package com.thilenius.flame.client.gui;
 
-import com.thilenius.flame.spark.ContainerWoodenSpark;
-import com.thilenius.flame.spark.GuiWoodenSpark;
-import com.thilenius.flame.spark.TileEntityWoodenSpark;
-import com.thilenius.flame.tpad.*;
+import com.thilenius.flame.inventory.ContainerWoodenSpark;
+import com.thilenius.flame.client.gui.GuiWoodenSpark;
+import com.thilenius.flame.tileentity.TileEntityWoodenSpark;
+import com.thilenius.flame.tileentity.TileEntityTeleportPad;
 import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;

@@ -2,9 +2,10 @@ package com.thilenius.flame.block;
 
 import com.thilenius.flame.Flame;
 import com.thilenius.flame.GlobalData;
-import com.thilenius.flame.lib.Names;
-import com.thilenius.flame.spark.TileEntityWoodenSpark;
-import com.thilenius.flame.tpad.TileEntityTeleportPad;
+import com.thilenius.flame.init.ModItems;
+import com.thilenius.flame.reference.Names;
+import com.thilenius.flame.tileentity.TileEntityWoodenSpark;
+import com.thilenius.flame.tileentity.TileEntityTeleportPad;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -52,7 +53,7 @@ public class BlockTeleportPad extends BlockTileEntityFL {
             TileEntityTeleportPad tileEntityTeleportPad = (TileEntityTeleportPad) tileEntity;
             tileEntityTeleportPad.unregisterActionPaths();
             if (!world.isRemote) {
-                world.spawnEntityInWorld(new EntityItem(world, x, y, z, new ItemStack(GlobalData.TeleportPadItem, 1)));
+                world.spawnEntityInWorld(new EntityItem(world, x, y, z, new ItemStack(ModItems.tpPad, 1)));
             }
             // Also break the spark
             TileEntity tileEntity2 = world.getTileEntity(

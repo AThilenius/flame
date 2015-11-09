@@ -8,9 +8,6 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-/**
- * Created by Alec on 1/18/15.
- */
 public class HomeCommandHandler extends CommandBase {
     @Override
     public String getCommandName() {

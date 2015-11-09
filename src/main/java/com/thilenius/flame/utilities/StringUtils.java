@@ -1,8 +1,5 @@
 package com.thilenius.flame.utilities;
 
-/**
- * Created by Alec on 1/27/15.
- */
 public class StringUtils {
 
     public static String Shrink (String fullString, String secondaryString, String truncateString, int maxSize) {
@@ -22,11 +19,8 @@ public class StringUtils {
     }
 
     public static boolean nullOrEmpty (String str) {
-        if (str == null || str.isEmpty()) {
-            return true;
-        }
+        return str == null || str.isEmpty();
 
-        return false;
     }
 
 }

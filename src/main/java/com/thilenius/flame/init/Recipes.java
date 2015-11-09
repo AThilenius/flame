@@ -8,9 +8,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-/**
- * Created by skyco on 11/8/2015.
- */
 public class Recipes
 {
     public static void init()

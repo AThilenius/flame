@@ -3,13 +3,10 @@ package com.thilenius.flame.init;
 import com.thilenius.flame.block.BlockTileEntityFL;
 import com.thilenius.flame.block.BlockTeleportPad;
 import com.thilenius.flame.block.BlockWoodenSpark;
-import com.thilenius.flame.lib.Names;
-import com.thilenius.flame.lib.Reference;
+import com.thilenius.flame.reference.Names;
+import com.thilenius.flame.reference.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-/**
- * Created by skyco on 11/8/2015.
- */
 @GameRegistry.ObjectHolder(Reference.MOD_ID)
 public class ModBlocks
 {

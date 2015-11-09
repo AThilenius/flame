@@ -1,12 +1,11 @@
-package com.thilenius.flame.tpad;
+package com.thilenius.flame.tileentity;
 
 import cofh.api.energy.IEnergyReceiver;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.thilenius.flame.GlobalData;
 import com.thilenius.flame.entity.FlameActionPath;
 import com.thilenius.flame.entity.FlameActionTargetResponse;
-import com.thilenius.flame.entity.FlameTileEntity;
-import com.thilenius.flame.spark.TileEntityWoodenSpark;
+import com.thilenius.flame.init.ModBlocks;
 import com.thilenius.flame.utilities.AnimationHelpers;
 import com.thilenius.flame.utilities.types.CountdownTimer;
 import com.thilenius.flame.utilities.types.Location3D;
@@ -16,7 +15,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -32,7 +30,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class TileEntityTeleportPad extends FlameTileEntity implements IEnergyReceiver, IInventory {
+public class TileEntityTeleportPad extends TileEntityFL implements IEnergyReceiver, IInventory {
 
     // Used for animation offset
     public final float TIME_OFFSET_CONST = new Random().nextFloat();
@@ -122,7 +120,7 @@ public class TileEntityTeleportPad extends FlameTileEntity implements IEnergyRec
         if (!newLocation.equals(getSparkLocation())) {
             // Move action, Check if we can move to the new spot
             if (world.getBlock(newLocation.X, newLocation.Y, newLocation.Z).isReplaceable(world, newLocation.X, newLocation.Y, newLocation.Z)) {
-                world.setBlock(newLocation.X, newLocation.Y, newLocation.Z, GlobalData.WoodenSparkBlock);
+                world.setBlock(newLocation.X, newLocation.Y, newLocation.Z, ModBlocks.woodSpark);
                 TileEntityWoodenSpark sparkTileEntity = (TileEntityWoodenSpark) world.getTileEntity(
                         newLocation.X, newLocation.Y, newLocation.Z);
                 sparkTileEntity.setTeleportPadLocation(getPadLocation());

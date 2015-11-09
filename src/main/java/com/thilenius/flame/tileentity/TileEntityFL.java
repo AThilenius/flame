@@ -1,6 +1,8 @@
-package com.thilenius.flame.entity;
+package com.thilenius.flame.tileentity;
 
 import com.thilenius.flame.Flame;
+import com.thilenius.flame.entity.FlameActionPath;
+import com.thilenius.flame.entity.FlameActionTarget;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
@@ -9,7 +11,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 // Does nothing more than add/manage/remove Action Targets
-public class FlameTileEntity extends TileEntity {
+public class TileEntityFL extends TileEntity {
 
     private String m_playerUsername;
     private String m_entityUuid = UUID.randomUUID().toString();

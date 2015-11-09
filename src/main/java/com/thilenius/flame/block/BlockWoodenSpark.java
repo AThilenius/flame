@@ -1,9 +1,9 @@
 package com.thilenius.flame.block;
 
 import com.thilenius.flame.Flame;
-import com.thilenius.flame.lib.Names;
-import com.thilenius.flame.spark.TileEntityWoodenSpark;
-import com.thilenius.flame.tpad.TileEntityTeleportPad;
+import com.thilenius.flame.reference.Names;
+import com.thilenius.flame.tileentity.TileEntityWoodenSpark;
+import com.thilenius.flame.tileentity.TileEntityTeleportPad;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;

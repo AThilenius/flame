@@ -1,8 +1,5 @@
 package com.thilenius.flame.utilities.types;
 
-/**
- * Created by Alec on 10/24/14.
- */
 public class Location2D {
 
     public int X;
