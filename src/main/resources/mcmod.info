@@ -7,9 +7,12 @@
   "mcversion": "${minecraft_version}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["AlecThilenius"],
+  "authorList": [
+    "AlecThilenius",
+    "skycoop"
+  ],
   "credits": "Alec Thilenius",
-  "logoFile": "",
+  "logoFile": "assets/flame/textures/logo/logo.png",
   "screenshots": [],
   "dependencies": []
 }
