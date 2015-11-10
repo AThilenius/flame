@@ -36,10 +36,10 @@ minecraft {
     version = config.minecraft_version + "-" + config.forge_version
 
     replaceIn "reference/Reference.java"
-    replace "@MOD_VERSION@", "${config.mod_version}.${System.getenv("BUILD_NUMBER") ?: 0}"
+    replace "@MOD_VERSION@", "${config.mod_version}"
 }
 
-version = "${config.minecraft_version}-${config.mod_version}.${System.getenv("BUILD_NUMBER") ?: 0}"
+version = "${config.minecraft_version}-${config.mod_version}"
 
 
 processResources {
