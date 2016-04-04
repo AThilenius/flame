@@ -1,7 +1,0 @@
-# Creative Tabs
-itemGroup.flame=Flame
-
-# Items
-item.flame:woodenSparkItem.name=Wooden Spark
-item.flame:singularityCoreItem.name=Singularity Core
-item.flame:teleportPadItem.name=Teleport Pad

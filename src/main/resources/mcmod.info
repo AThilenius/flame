@@ -2,17 +2,14 @@
 {
   "modid": "flame",
   "name": "Flame",
-  "description": "The Minecraft plugin for the ScorchForge.com project.",
-  "version": "${mod_version}",
-  "mcversion": "${minecraft_version}",
+  "description": "Adding a python modding api",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": [
-    "AlecThilenius",
-    "skycoop"
-  ],
-  "credits": "Alec Thilenius",
-  "logoFile": "assets/flame/textures/logo/logo.png",
+  "authorList": ["Athilenius", "skycoop"],
+  "credits": "",
+  "logoFile": "",
   "screenshots": [],
   "dependencies": []
 }
