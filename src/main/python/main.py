@@ -1,6 +1,3 @@
-from com.scorchforge.flame import Flame
+from com.scorchforge.flame.utility import LogHelper
 
-class FlameMod(Flame):
-
-    def __init__(self):
-        print "Hello, world!"
+LogHelper.info("Interpreter is running!")
