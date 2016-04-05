@@ -1,7 +1,7 @@
-package com.scorchforge.flame;
+package com.scorchforge.fl;
 
-import com.scorchforge.flame.reference.Reference;
-import com.scorchforge.flame.utility.LogHelper;
+import com.scorchforge.fl.reference.Reference;
+import com.scorchforge.fl.utility.LogHelper;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -10,7 +10,7 @@ import org.python.util.PythonInterpreter;
 
 import java.io.InputStream;
 
-@Mod(modid = Reference.MOD_ID, version = Reference.MOD_NAME)
+@Mod(modid = Reference.MOD_ID, version = Reference.VERSION)
 public class FlameLoader {
 
     @Mod.EventHandler
@@ -24,6 +24,7 @@ public class FlameLoader {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
+        // Recipe initialization if we decide to do it during construction (but that makes things complicated)
         LogHelper.info("Initialization Complete!");
     }
 

@@ -1,7 +1,7 @@
 [
 {
-  "modid": "flame",
-  "name": "Flame",
+  "modid": "FlameLoader",
+  "name": "Flame Loader",
   "description": "Adding a python modding api",
   "version": "${version}",
   "mcversion": "${mcversion}",

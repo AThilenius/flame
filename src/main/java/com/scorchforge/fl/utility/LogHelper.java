@@ -1,6 +1,6 @@
-package com.scorchforge.flame.utility;
+package com.scorchforge.fl.utility;
 
-import com.scorchforge.flame.reference.Reference;
+import com.scorchforge.fl.reference.Reference;
 import net.minecraftforge.fml.common.FMLLog;
 import org.apache.logging.log4j.Level;
 
