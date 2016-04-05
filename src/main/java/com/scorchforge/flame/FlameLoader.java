@@ -11,12 +11,12 @@ import org.python.util.PythonInterpreter;
 import java.io.InputStream;
 
 @Mod(modid = Reference.MOD_ID, version = Reference.MOD_NAME)
-public class Flame {
+public class FlameLoader {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        LogHelper.info("Creating Flame Python Interpreter");
-        InputStream main = Flame.class.getResourceAsStream("/python/main.py");
+        LogHelper.info("Creating FlameLoader Python Interpreter");
+        InputStream main = FlameLoader.class.getResourceAsStream("/python/main.py");
         PythonInterpreter interpreter = new PythonInterpreter();
         interpreter.execfile(main);
         LogHelper.info("Pre Initialization Complete!");
