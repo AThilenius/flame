@@ -1,3 +1,6 @@
-from com.scorchforge.fl.utility import LogHelper
+from com.scorchforge.blaze import BlazeLoader
 
-LogHelper.info("Interpreter is running!")
+class Test():
+
+    def foo(self):
+        BlazeLoader.log.info("Interpreter is running!")
